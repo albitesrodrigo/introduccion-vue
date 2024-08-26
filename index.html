@@ -7,16 +7,28 @@
   </head>
   <body>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <div id="app">{{ text }}</div>
+    <div id="app"></div>
     <script>
-        const vm = Vue.createApp({
-            data() {
-                return {
-                    text: "Hola vue"
-                };
-            }
-        }).mount("#app");
-        console.log(vm);
+      const vm = Vue.createApp({
+        data() {
+          return {
+            counter: 0,
+          };
+        },
+        methods: {
+          increment() {
+            this.counter++;
+          },
+          decrement() {
+            this.counter--;
+          },
+        },
+        template: `<form>
+            <button style="margin-right: 10px" v-on:click.prevent ="increment">+</button>
+            <button style="margin-right: 10px" v-on:click.prevent ="decrement">-</button>
+            <span>{{ counter }}</span>
+          </form>`,
+      }).mount("#app");
     </script>
   </body>
 </html>
