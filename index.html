@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,36 +13,26 @@
       const vm = Vue.createApp({
         data() {
           return {
-            text: "Hola Vue",
+            firstName: "John",
+            lastName: "Doe",
+            date: new Date(),
           };
         },
-        // methods: {
-        //   input(e) {
-        //     this.text = e.target.value;
-        //   },
-        // },
         // template: `
-        //   <p>{{ text }}</p>
-        //   <input 
-        //     type="text" 
-        //     v-on:input="input" 
-        //     v-bind:value="text"
-        //   />
+        //   <div>{{ firstName }} {{ lastName }}</div>
+        //   <div>{{ date.toLocaleDateString() }}</div>
         // `,
-        // template: `
-        //   <p>{{ text }}</p>
-        //   <input 
-        //     type="text" 
-        //     @input="input" 
-        //     :value="text"
-        //   />
-        // `,
+        computed: {
+          fullName() {
+            return `${this.firstName} ${this.lastName}`;
+          },
+          today() {
+            return this.date.toLocaleDateString();
+          },
+        },
         template: `
-          <p>{{ text }}</p>
-          <input 
-            type="text" 
-            v-model="text"
-          />
+          <div>{{ fullName }}</div>
+          <div>{{ today }}</div>
         `,
       }).mount("#app");
     </script>
